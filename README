@@ -1,0 +1,3 @@
+BundleServer Commons is a Java client interface which provides a ready made framework for interacting with the BundleServer.
+
+See the Lobby Client module in BundleServer for an example of how to use this library to implement a client.
