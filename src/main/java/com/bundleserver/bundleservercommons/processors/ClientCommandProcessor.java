@@ -17,7 +17,7 @@ package com.bundleserver.bundleservercommons.processors;
 
 import com.bundleserver.bundleservercommons.actions.PostClientCommandProcessingAction;
 import com.bundleserver.bundleservercommons.core.CommandId;
-import com.bundleserver.bundleservercommons.core.Command;
+import com.bundleserver.bundleservercommons.core.RawCommand;
 
 public interface ClientCommandProcessor {
 
@@ -25,9 +25,9 @@ public interface ClientCommandProcessor {
 	 * Processes the given command.
 	 * <p/>
 	 * @param commandToProcess
-	 * @return 
+	 * @return
 	 */
-	public PostClientCommandProcessingAction processCommand(Command commandToProcess);
+	public PostClientCommandProcessingAction processCommand(RawCommand commandToProcess);
 
 	/**
 	 * A ClientCommandProcessor may be associated with several commandIds.

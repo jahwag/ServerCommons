@@ -15,21 +15,21 @@
  */
 package com.bundleserver.bundleservercommons.actions;
 
-import com.bundleserver.bundleservercommons.core.Command;
+import com.bundleserver.bundleservercommons.core.RawCommand;
 import com.bundleserver.bundleservercommons.processors.ClientCommandProcessor;
 import java.io.BufferedWriter;
 
 /**
- * Always executed by BundleServer (Consumer) after processing {@link Command} (Producer).
+ * Always executed by BundleServer (Consumer) after processing {@link RawCommand} (Producer).
  *
  * @see ClientCommandProcessor
  */
 public abstract class PostClientCommandProcessingAction {
 
 	private final BufferedWriter outputStream;
-	private final Command command;
+	private final RawCommand command;
 
-	public PostClientCommandProcessingAction(BufferedWriter out, Command command) {
+	public PostClientCommandProcessingAction(BufferedWriter out, RawCommand command) {
 		this.outputStream = out;
 		this.command = command;
 	}
@@ -38,7 +38,7 @@ public abstract class PostClientCommandProcessingAction {
 		return outputStream;
 	}
 
-	public Command getCommand() {
+	public RawCommand getCommand() {
 		return command;
 	}
 

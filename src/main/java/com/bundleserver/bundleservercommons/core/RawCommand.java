@@ -17,12 +17,12 @@ package com.bundleserver.bundleservercommons.core;
 
 import java.util.Arrays;
 
-public class Command {
+public class RawCommand {
 
 	private CommandId command;
 	private String[] message;
 
-	public Command(CommandId command, String[] message) {
+	public RawCommand(CommandId command, String[] message) {
 		this.command = command;
 		this.message = message;
 	}

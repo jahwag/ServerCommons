@@ -41,4 +41,22 @@ public class CommandId {
 	public int getId() {
 		return id < 0 ? Short.MAX_VALUE + Math.abs(id) : id;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		if(!(obj instanceof CommandId)) {
+			throw new RuntimeException("Attempted to compare " + getClass().getSimpleName() + " with " + obj.getClass().getSimpleName());
+		}
+
+		return new Short(id).equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return id;
+	}
+
 }
