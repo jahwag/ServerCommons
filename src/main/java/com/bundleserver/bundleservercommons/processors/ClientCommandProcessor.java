@@ -18,8 +18,10 @@ package com.bundleserver.bundleservercommons.processors;
 import com.bundleserver.bundleservercommons.actions.PostClientCommandProcessingAction;
 import com.bundleserver.bundleservercommons.core.CommandId;
 import com.bundleserver.bundleservercommons.core.RawCommand;
+import org.osgi.service.log.LogService;
 
-public interface ClientCommandProcessor {
+public abstract class ClientCommandProcessor {
+	private volatile LogService logger;
 
 	/**
 	 * Processes the given command.
@@ -27,12 +29,36 @@ public interface ClientCommandProcessor {
 	 * @param commandToProcess
 	 * @return
 	 */
-	public PostClientCommandProcessingAction processCommand(RawCommand commandToProcess);
+	public abstract PostClientCommandProcessingAction processCommand(RawCommand commandToProcess);
 
 	/**
 	 * A ClientCommandProcessor may be associated with several commandIds.
 	 * <p/>
 	 * @return one or more commandIds handled by this processor.
 	 */
-	public CommandId[] getAssociatedIds();
+	public abstract CommandId[] getAssociatedIds();
+
+	public LogService getLogger() {
+		return logger;
+	}
+
+	@Override
+	public int hashCode() {
+		// A CCP is effectively a singleton inside the server
+		return getClass().getSimpleName().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final ClientCommandProcessor other = (ClientCommandProcessor) obj;
+		return other.getClass().equals(getClass());
+	}
+
+
 }

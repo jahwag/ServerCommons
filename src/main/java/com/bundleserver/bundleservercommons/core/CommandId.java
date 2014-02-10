@@ -50,8 +50,9 @@ public class CommandId {
 		if(!(obj instanceof CommandId)) {
 			throw new RuntimeException("Attempted to compare " + getClass().getSimpleName() + " with " + obj.getClass().getSimpleName());
 		}
+		CommandId other = (CommandId) obj;
 
-		return new Short(id).equals(obj);
+		return id == other.getId();
 	}
 
 	@Override

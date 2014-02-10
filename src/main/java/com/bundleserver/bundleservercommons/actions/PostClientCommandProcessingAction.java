@@ -18,6 +18,7 @@ package com.bundleserver.bundleservercommons.actions;
 import com.bundleserver.bundleservercommons.core.RawCommand;
 import com.bundleserver.bundleservercommons.processors.ClientCommandProcessor;
 import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * Always executed by BundleServer (Consumer) after processing {@link RawCommand} (Producer).
@@ -26,21 +27,19 @@ import java.io.BufferedWriter;
  */
 public abstract class PostClientCommandProcessingAction {
 
-	private final BufferedWriter outputStream;
 	private final RawCommand command;
 
-	public PostClientCommandProcessingAction(BufferedWriter out, RawCommand command) {
-		this.outputStream = out;
+	/**
+	 * @param out OutputStream to client.
+	 * @param command the associated command.
+	 */
+	public PostClientCommandProcessingAction(RawCommand command) {
 		this.command = command;
-	}
-
-	public BufferedWriter getOutputStream() {
-		return outputStream;
 	}
 
 	public RawCommand getCommand() {
 		return command;
 	}
 
-	public abstract void execute();
+	public abstract void execute(BufferedWriter outputStream) throws IOException;
 }
